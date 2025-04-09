@@ -15,6 +15,8 @@ function Navbar() {
 
           <>
           <li>Welcome {user.username}</li>
+          <li><Link to='/stadium'>Stadiums</Link></li>
+          <li><Link to='/stadium/new'>Add New Stadium</Link></li>
           <button onClick={logout}>Logout</button>
           </>
         )}
