@@ -6,7 +6,11 @@ function Signup() {
 
     const [formData, setFormData] = useState({
         username:"",
-        password:""
+        password:"",
+        gender:"",
+        ContactNo:"",
+        role:"admin"
+        
     })
 
     const navigate = useNavigate()
@@ -37,6 +41,7 @@ function Signup() {
          id='username'
          value={formData.username}
          onChange={handleChange}
+         required
           />
 
         <label htmlFor="password">Password:</label>
@@ -46,7 +51,39 @@ function Signup() {
          id='password'
          value={formData.password}
          onChange={handleChange}
+         required
           />
+
+        <label htmlFor="ContactNo">Contact Number:</label>
+        <input
+         type="number"
+         name='ContactNo'
+         id='ContactNo'
+         value={formData.ContactNo}
+         onChange={handleChange}
+         min="10000000"
+         max= "99999999" 
+         required
+          />
+        
+      <div onChange={handleChange} id='gender'>
+      <label htmlFor="gender">Gender:</label>
+
+        <input type="radio" value="male" name="gender" required/> Male
+        <input type="radio" value="female" name="gender" required/> Female
+      </div>
+        
+        <input
+         type="text"
+         name='role'
+         id='role'
+         value={formData.role}
+         onChange={handleChange}
+         hidden
+          />
+
+
+
 
           <button>Submit</button>
       </form>

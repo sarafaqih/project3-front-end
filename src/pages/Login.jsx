@@ -44,6 +44,7 @@ function Login() {
          id='username'
          value={formData.username}
          onChange={handleChange}
+         required
           />
 
         <label htmlFor="password">Password:</label>
@@ -53,6 +54,7 @@ function Login() {
          id='password'
          value={formData.password}
          onChange={handleChange}
+         required
           />
 
           <button>Submit</button>
