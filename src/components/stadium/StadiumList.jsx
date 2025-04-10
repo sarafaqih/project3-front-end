@@ -2,7 +2,7 @@ import {useState, useEffect, useContext} from 'react'
 import axios from 'axios'
 import {Link} from "react-router"
 import { authContext } from '../../context/AuthContext'
-import { getAllStadiums } from '../../service/stadiumService'
+import { getAllStadiums, deleteStadium } from '../../service/stadiumService'
 
 function StadiumList() {
     const [stadiums,setStadiums] = useState([]) 
@@ -24,6 +24,13 @@ function StadiumList() {
 
     }
 
+    async function deleteOneStadium(id){
+  
+      await deleteStadium(id)
+      // refetching the stadiums after we delete and setting the state again
+      await getStadiums()
+    }
+
     useEffect(()=>{
         getStadiums()
     },[])
@@ -40,10 +47,11 @@ function StadiumList() {
                     <p>{oneStadium.city}</p>
                 </Link>
     
-              {user._id === oneStadium.addedBy._id && (
+              {oneStadium.addedBy.role === 'admin' && (
                 <>
-                <button onClick={()=>{deleteStadium(oneStadium._id)}}>Delete Stadium</button>
-                <Link to={`/stadium/${oneStadium._id}/edit`}><button>Update Stadium</button></Link>
+                <h1>{oneStadium._id}</h1>
+                <button onClick={()=>{deleteOneStadium(oneStadium._id)}}>Delete Stadium</button>
+                <Link to={`/stadium/${oneStadium._id}/update`}><button>Update Stadium</button></Link>
     
                 </>
     
