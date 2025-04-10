@@ -11,20 +11,11 @@ import StadiumForm from './components/stadium/StadiumForm'
 // import stadiumService from './service/stadiumService'
 import StadiumList from './components/stadium/StadiumList'
 import { authContext } from './context/AuthContext'
+import StadiumDetails from './components/stadium/StadiumDetails'
 
 function App() {
 
  const {user} = useContext(authContext)
-
-  const [stadiums, setStadiums] = useState([]);
-
-  const navigate = useNavigate();
-  // const handleAddStadium = async (stadiumFormData) => {
-  //   const newStadium = await stadiumService.createStadium(stadiumFormData)
-  //   setStadiums([newStadium, ...stadiums])
-  //   console.log('stadiumFormData', stadiumFormData);
-  //   navigate('/stadium');
-  // };
 
   return (
     <>
@@ -33,6 +24,8 @@ function App() {
         { user ? (
           <>
                 <Route path="/stadium" element={<StadiumList/>}/>
+                <Route path='/stadium/:stadiumId' element={<StadiumDetails/>}/>
+                <Route path="/stadium/new" element={<StadiumForm/>}/>
           </>
         ) : 
         (    
