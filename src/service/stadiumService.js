@@ -24,6 +24,15 @@ const getAllStadiums = async () => {
   }
 };
 
+const getOneStadium = async (id) => {
+    try {
+        const res = await api.get(`/${id}`); 
+        return res.data;
+    } catch (error) {
+        console.log('Error fetching data:', error);
+    }
+};
+
 async function createStadium(formData){
   try{
       const res = await api.post(`/`,formData)
@@ -34,4 +43,4 @@ async function createStadium(formData){
   }
 }
 
-export  {getAllStadiums}; 
+export  {getAllStadiums, getOneStadium, createStadium}; 

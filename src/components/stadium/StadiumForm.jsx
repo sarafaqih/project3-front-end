@@ -1,37 +1,53 @@
 // src/components/HootForm/HootForm.jsx
+import { useState, useContext } from 'react';
+import axios from 'axios'
+import {useNavigate} from 'react-router'
+import { createStadium } from '../../service/stadiumService'
+import { authContext } from '../../context/AuthContext';
 
-import { useState } from 'react';
+function StadiumForm() {
+  const {user} = useContext(authContext)
 
-const StadiumForm = (props) => {
   const [formData, setFormData] = useState({
     city:"",
-    Governorates:"Capital",
+    Governorates:"capital",
     name:"",
     openingTime:'',
     closingTime:'',
-    Facilities:"Prayer Room",
+    Facilities:"prayer-room",
     GoogleMaps:"",
     ContactNo:'',
     PricePerHour:'',
-    StadiumNature:"Outdoor",
-    playerGender: "Female",
+    StadiumNature:"outdoor",
+    playerGender: "female",
     notes: "",
     addedAt:Date.now(),
-    addedBy:''
+    addedBy: user.username
 });
 
-  const handleChange = (evt) => {
-    setFormData({ ...formData, [evt.target.name]: evt.target.value });
+const navigate = useNavigate()
+
+
+  async function handleSubmit(e) {
+    e.preventDefault();
+    try{
+      const token = localStorage.getItem("token")
+
+          const createdStadium = await createStadium(formData)
+    
+            navigate("/stadium")
+    }catch(err){
+      console.log(err)
+    }
   };
 
-  const handleSubmit = (evt) => {
-    evt.preventDefault();
-    props.handleAddStadium(formData);
-    console.log('formData', formData);
+  function handleChange (e) {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
   };
+
 
   return (
-    <main>
+    <div>
       <form onSubmit={handleSubmit}>
       <label htmlFor='name'>Name</label>
         <input
@@ -156,10 +172,11 @@ const StadiumForm = (props) => {
         />
 
 
-        <button type='submit'>SUBMIT</button>
+        <button>SUBMIT</button>
       </form>
-    </main>
+    </div>
   );
 };
+
 
 export default StadiumForm;

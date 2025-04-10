@@ -35,7 +35,7 @@ function StadiumList() {
           {stadiums.map((oneStadium)=>
           <div style={{margin:"100px"}} key={oneStadium._id}>
             
-                <Link to={`/stadiums/${oneStadium._id}`}>
+                <Link to={`/stadium/${oneStadium._id}`}>
                 <h2>{oneStadium.name}</h2>
                     <p>{oneStadium.city}</p>
                 </Link>
