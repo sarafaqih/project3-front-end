@@ -7,11 +7,11 @@ import Signup from './pages/Signup'
 import Navbar from './components/Navbar'
 import ValidateIsLoggedIn from './validators/ValidateIsLoggedIn'
 import ValidateIsLoggedOut from './validators/ValidateIsLoggedOut'
-import StadiumForm from './components/stadium/StadiumForm'
-// import stadiumService from './service/stadiumService'
+import StadiumForm from './components/stadium/stadiumForm'
 import StadiumList from './components/stadium/StadiumList'
 import { authContext } from './context/AuthContext'
 import StadiumDetails from './components/stadium/StadiumDetails'
+import StadiumUpdate from './components/stadium/StadiumUpdate'
 
 function App() {
 
@@ -26,6 +26,7 @@ function App() {
                 <Route path="/stadium" element={<StadiumList/>}/>
                 <Route path='/stadium/:stadiumId' element={<StadiumDetails/>}/>
                 <Route path="/stadium/new" element={<StadiumForm/>}/>
+                <Route path="/stadium/:stadiumId/update" element={<StadiumUpdate/>}/>
           </>
         ) : 
         (    
