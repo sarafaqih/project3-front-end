@@ -12,6 +12,8 @@ import StadiumList from './components/stadium/StadiumList'
 import { authContext } from './context/AuthContext'
 import StadiumDetails from './components/stadium/StadiumDetails'
 import StadiumUpdate from './components/stadium/StadiumUpdate'
+import ListReservation from './components/reservation/ListReservation'
+import ReservationDetails from './components/reservation/ReservationDetails'
 
 function App() {
 
@@ -27,9 +29,12 @@ function App() {
                 <Route path='/stadium/:stadiumId' element={<StadiumDetails/>}/>
                 <Route path="/stadium/new" element={<StadiumForm/>}/>
                 <Route path="/stadium/:stadiumId/update" element={<StadiumUpdate/>}/>
+                <Route path="/stadium/:stadiumId/update" element={<StadiumUpdate/>}/>
+                <Route path='/stadium/reservations' element={<ListReservation/>}/>
+                <Route path='/stadium/reservations/:reservationId' element={<ReservationDetails/>}/>
+
           </>
-        ) : 
-        (    
+        ) : (    
           <>        
               <Route path="/signup" element={<Signup/>}/>
               <Route path="/login" element={<Login/>}/>

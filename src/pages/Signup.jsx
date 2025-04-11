@@ -9,7 +9,7 @@ function Signup() {
         password:"",
         gender:"",
         ContactNo:"",
-        role:"admin"
+        role:"customer"
         
     })
 
