@@ -11,15 +11,35 @@ function Navbar() {
     <div>
       <ul>
         <Link to="/"><li>Homepage</li></Link>
-        {user && (
-
+        {user &&  (
           <>
-          <li>Welcome {user.username}</li>
-          <li><Link to='/stadium'>Stadiums</Link></li>
-          <li><Link to='/stadium/new'>Add New Stadium</Link></li>
-          <button onClick={logout}>Logout</button>
-          </>
+          {user.role==='admin' && (
+            <>
+              <li>Welcome {user.username}</li>
+              <li><Link to='/stadium'>Stadiums</Link></li>
+              <li><Link to='/stadium/new'>Add New Stadium</Link></li>
+              <button onClick={logout}>Logout</button>
+            </>
         )}
+            </>
+
+        )}
+
+        {user &&  (
+          <>
+          {user.role==='customer' && (
+            <>
+              <li>Welcome {user.username}</li>
+              <li><Link to='/stadium'>Stadiums</Link></li>
+              <li><Link to='/stadium/reservations'>Reservations</Link></li>
+              <button onClick={logout}>Logout</button>
+            </>
+        )}
+            </>
+
+        )}
+
+      
         {!user && (
           <>
           <Link to='/login'><li>Login</li></Link>

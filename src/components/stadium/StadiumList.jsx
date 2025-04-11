@@ -49,7 +49,6 @@ function StadiumList() {
     
               {oneStadium.addedBy.role === 'admin' && (
                 <>
-                <h1>{oneStadium._id}</h1>
                 <button onClick={()=>{deleteOneStadium(oneStadium._id)}}>Delete Stadium</button>
                 <Link to={`/stadium/${oneStadium._id}/update`}><button>Update Stadium</button></Link>
     
