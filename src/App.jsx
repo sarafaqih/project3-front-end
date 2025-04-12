@@ -14,6 +14,7 @@ import StadiumDetails from './components/stadium/StadiumDetails'
 import StadiumUpdate from './components/stadium/StadiumUpdate'
 import ListReservation from './components/reservation/ListReservation'
 import ReservationDetails from './components/reservation/ReservationDetails'
+import ReservationForm from './components/reservation/ReservationForm'
 
 function App() {
 
@@ -32,6 +33,8 @@ function App() {
                 <Route path="/stadium/:stadiumId/update" element={<StadiumUpdate/>}/>
                 <Route path='/stadium/reservations' element={<ListReservation/>}/>
                 <Route path='/stadium/reservations/:reservationId' element={<ReservationDetails/>}/>
+                <Route path="/stadium/:stadiumId/reservation" element={<ReservationForm/>}/>
+
 
           </>
         ) : (    
