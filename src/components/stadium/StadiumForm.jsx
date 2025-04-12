@@ -1,4 +1,3 @@
-// src/components/HootForm/HootForm.jsx
 import { useState, useContext } from 'react';
 import axios from 'axios'
 import {useNavigate} from 'react-router'
@@ -175,8 +174,8 @@ const navigate = useNavigate()
         <button>SUBMIT</button>
       </form>
     </div>
-  );
-};
+  )
+}
 
 
 export default StadiumForm;

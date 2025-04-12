@@ -47,13 +47,15 @@ function StadiumList() {
                     <p>{oneStadium.city}</p>
                 </Link>
     
-              {oneStadium.addedBy.role === 'admin' && (
+              {user.role === 'admin' ? (
                 <>
                 <button onClick={()=>{deleteOneStadium(oneStadium._id)}}>Delete Stadium</button>
                 <Link to={`/stadium/${oneStadium._id}/update`}><button>Update Stadium</button></Link>
-    
                 </>
     
+                ): user.role === 'customer' && (
+                  <Link to={`/stadium/${oneStadium._id}/reservation`}><button>Reserve</button></Link>
+
                 )}
               
             

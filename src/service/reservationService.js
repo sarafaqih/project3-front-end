@@ -34,6 +34,7 @@ const getOneReservation = async (id) => {
 };
 
 async function createReservation(stadiumId,formData){
+    console.log("i am the id for stadium" +stadiumId)
   try{
       const res = await api.post(`/${stadiumId}/reservation`,formData)
       console.log("Response from backend:", res.data);
