@@ -1,13 +1,14 @@
-import { useState, useContext } from 'react';
+import {useState, useContext, useEffect} from 'react'
 import axios from 'axios'
-import {useNavigate} from 'react-router'
-import { createStadium } from '../../service/stadiumService'
+import {useNavigate, useParams} from 'react-router'
 import { authContext } from '../../context/AuthContext';
 
-function StadiumForm() {
+
+function StadiumUpdate() {
   const {user} = useContext(authContext)
 
-  const [formData, setFormData] = useState({
+
+  const [formData,setFormData] = useState({
     city:"",
     Governorates:"capital",
     name:"",
@@ -22,28 +23,45 @@ function StadiumForm() {
     notes: "",
     addedAt:Date.now(),
     addedBy: user.username
-});
+})
 
 const navigate = useNavigate()
 
+const {stadiumId} = useParams()
 
-  async function handleSubmit(e) {
-    e.preventDefault();
-    try{
+function handleChange(e){
+  setFormData({...formData,[e.target.name]:e.target.value})
+}
+
+async function handleSubmit(e){
+  e.preventDefault()
+
+  try{
       const token = localStorage.getItem("token")
 
-          const createdStadium = await createStadium(formData)
-    
-            navigate("/stadium")
-    }catch(err){
+      const createdStadium = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/stadium/${stadiumId}`,formData,{headers:{Authorization:`Bearer ${token}`}})
+
+      navigate("/stadium")
+
+  }
+  catch(err){
       console.log(err)
-    }
-  };
+  }
 
-  function handleChange (e) {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+}
 
+async function getStadium(){
+  const token = localStorage.getItem("token")
+
+  const foundStadium = await axios.get(`${import.meta.env.VITE_BACKEND_URL}/stadium/${stadiumId}`,{headers:{Authorization:`Bearer ${token}`}})
+  setFormData(foundStadium.data)
+  console.log(foundStadium.data)
+
+}
+
+useEffect(()=>{
+  getStadium()
+},[])
 
   return (
     <div>
@@ -177,5 +195,4 @@ const navigate = useNavigate()
   )
 }
 
-
-export default StadiumForm;
+export default StadiumUpdate
