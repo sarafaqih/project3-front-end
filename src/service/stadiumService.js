@@ -26,6 +26,7 @@ const getAllStadiums = async () => {
   }
 };
 
+<<<<<<< HEAD
 // Create a new stadium
 const createStadium = async (formData) => {
   try {
@@ -35,7 +36,41 @@ const createStadium = async (formData) => {
   } catch (err) {
     console.log("Error creating stadium:", err.message);
     throw err; // Rethrow the error for the caller to handle if needed
+=======
+const getOneStadium = async (id) => {
+    try {
+        const res = await api.get(`/${id}`); 
+        return res.data;
+    } catch (error) {
+        console.log('Error fetching data:', error);
+    }
+};
+
+async function createStadium(formData){
+  try{
+      const res = await api.post(`/`,formData)
+      console.log("Response from backend:", res.data);
+      return res.data
+  }catch(err){
+      console.log(err.message)
+>>>>>>> f4722c56687d0a3b1f7d29d58b64eb90be40ba54
   }
 };
 
+<<<<<<< HEAD
 export { getAllStadiums, createStadium };
+=======
+async function deleteStadium(id){
+    if(!id){
+       return console.log("No ID")
+    }
+    try{
+        const res = await api.delete(`/${id}`)
+        return res.data
+    }catch(err){
+        console.log(err)
+    }
+}
+
+export  {getAllStadiums, getOneStadium, createStadium, deleteStadium}; 
+>>>>>>> f4722c56687d0a3b1f7d29d58b64eb90be40ba54
