@@ -1,6 +1,8 @@
 import {useState} from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router'
+import Form from 'react-bootstrap/Form'
+import InputGroup from 'react-bootstrap/InputGroup'
 
 function Signup() {
 
@@ -32,60 +34,74 @@ function Signup() {
     }
   return (
     <div>
+      <h1>Signup</h1>
+      <br />
+
       
       <form onSubmit={handleSubmit}>
-        <label htmlFor="username">Username:</label>
-        <input
-         type="text"
-         name='username'
-         id='username'
-         value={formData.username}
-         onChange={handleChange}
-         required
-          />
+       
+      <InputGroup size="lg" className="mb-3">
+        <InputGroup.Text id="inputGroup-sizing-lg" htmlFor="username">Username</InputGroup.Text>
+        <Form.Control
+          aria-label="Large"
+          aria-describedby="inputGroup-sizing-lg"
+          type="text"
+          name='username'
+          id='username'
+          value={formData.username}
+          onChange={handleChange}
+          required
+        />
+      </InputGroup>
 
-        <label htmlFor="password">Password:</label>
-        <input
-         type="password"
-         name='password'
-         id='password'
-         value={formData.password}
-         onChange={handleChange}
-         required
-          />
+      <InputGroup size="lg" className="mb-3">
+        <InputGroup.Text id="inputGroup-sizing-lg" htmlFor="password">Password</InputGroup.Text>
+        <Form.Control
+          aria-label="Large"
+          aria-describedby="inputGroup-sizing-lg"
+          type="password"
+          name='password'
+          id='password'
+          value={formData.password}
+          onChange={handleChange}
+          required
+         />
+      </InputGroup>
 
-        <label htmlFor="ContactNo">Contact Number:</label>
-        <input
-         type="number"
-         name='ContactNo'
-         id='ContactNo'
-         value={formData.ContactNo}
-         onChange={handleChange}
-         min="10000000"
-         max= "99999999" 
-         required
-          />
-        
+      <InputGroup size="lg" className="mb-3">
+        <InputGroup.Text id="inputGroup-sizing-lg" htmlFor="ContactNo">Contact Number</InputGroup.Text>
+        <Form.Control
+          aria-label="Large"
+          aria-describedby="inputGroup-sizing-lg"
+          type="number"
+          name='ContactNo'
+          id='ContactNo'
+          value={formData.ContactNo}
+          onChange={handleChange}
+          min="10000000"
+          max= "99999999"
+          required
+         />
+      </InputGroup>
+
       <div onChange={handleChange} id='gender'>
-      <label htmlFor="gender">Gender:</label>
+      <InputGroup size="lg" className="mb-3">
+        <InputGroup.Text id="inputGroup-sizing-lg" htmlFor="gender">Gender</InputGroup.Text>
+        <Form.Check
+          type="radio"
+          value="male" 
+          name="gender" 
+          required/> Male
+          <Form.Check
+          type="radio"
+          value="female" 
+          name="gender" 
+          required/> Female
 
-        <input type="radio" value="male" name="gender" required/> Male
-        <input type="radio" value="female" name="gender" required/> Female
+      </InputGroup>
       </div>
-        
-        <input
-         type="text"
-         name='role'
-         id='role'
-         value={formData.role}
-         onChange={handleChange}
-         hidden
-          />
 
-
-
-
-          <button>Submit</button>
+      <button style={{backgroundColor:'black', border:'black', color:'white'}} size="lg">Signup</button>
       </form>
     </div>
   )

@@ -2,6 +2,8 @@ import {useState, useContext} from 'react'
 import axios from 'axios'
 import { useNavigate } from 'react-router'
 import { authContext } from '../context/AuthContext'
+import Form from 'react-bootstrap/Form'
+import InputGroup from 'react-bootstrap/InputGroup'
 
 
 function Login() {
@@ -24,7 +26,7 @@ function Login() {
           console.log(response.data)
           localStorage.setItem("token",response.data.token)
           validateToken()
-          // navigate("/login")
+          navigate("/stadium")
       }
       catch(err){
           console.log(err)
@@ -35,30 +37,40 @@ function Login() {
   return (
     <div>
       <h1>Login</h1>
+      <br />
 
       <form onSubmit={handleSubmit}>
-        <label htmlFor="username">Username:</label>
-        <input
-         type="text"
-         name='username'
-         id='username'
-         value={formData.username}
-         onChange={handleChange}
-         required
-          />
 
-        <label htmlFor="password">Password:</label>
-        <input
-         type="password"
-         name='password'
-         id='password'
-         value={formData.password}
-         onChange={handleChange}
-         required
-          />
+      <InputGroup size="lg" className="mb-3">
+        <InputGroup.Text id="inputGroup-sizing-lg" htmlFor="username">Username</InputGroup.Text>
+        <Form.Control
+          aria-label="Large"
+          aria-describedby="inputGroup-sizing-lg"
+          type="text"
+          name='username'
+          id='username'
+          value={formData.username}
+          onChange={handleChange}
+          required
+        />
+      </InputGroup>
 
-          <button>Submit</button>
-      </form>
+      <InputGroup size="lg" className="mb-3">
+        <InputGroup.Text id="inputGroup-sizing-lg" htmlFor="password">Password</InputGroup.Text>
+        <Form.Control
+          aria-label="Large"
+          aria-describedby="inputGroup-sizing-lg"
+          type="password"
+          name='password'
+          id='password'
+          value={formData.password}
+          onChange={handleChange}
+          required
+         />
+      </InputGroup>
+
+      <button style={{backgroundColor:'black', border:'black', color:'white'}} size="lg">Login</button>
+     </form>
     </div>
   )
 }

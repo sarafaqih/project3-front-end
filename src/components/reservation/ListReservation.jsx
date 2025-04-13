@@ -31,7 +31,7 @@ function ListReservation() {
     },[])
 
     return (
-        <div>
+        <div style={{padding:'70px'}}>
           <h1>Reservation List</h1>
     
           {reservations.map((oneReservation)=>
