@@ -34,4 +34,4 @@ async function createStadium(formData){
   }
 }
 
-export  {getAllStadiums,createStadium}; 
+export  {getAllStadiums}; 
