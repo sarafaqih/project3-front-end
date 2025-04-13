@@ -55,4 +55,8 @@ async function deleteStadium(id){
     }
 }
 
+function test(){
+    
+}
+
 export  {getAllStadiums, getOneStadium, createStadium, deleteStadium}; 
