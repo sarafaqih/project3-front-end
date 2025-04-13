@@ -47,4 +47,6 @@ const createStadium = async (formData) => {
   }
 };
 
-export  {getAllStadiums}; 
+
+
+export  {getAllStadiums, getOneStadium, createStadium, deleteStadium}; 
