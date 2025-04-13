@@ -2,7 +2,7 @@ import {useState, useEffect, useContext} from 'react'
 import axios from 'axios'
 import {Link} from "react-router"
 import { authContext } from '../../context/AuthContext'
-import { getAllStadiums } from '../../service/stadiumService'
+import { getAllStadiums, deleteStadium } from '../../service/stadiumService'
 
 function StadiumList() {
     const [stadiums,setStadiums] = useState([]) 
@@ -24,6 +24,13 @@ function StadiumList() {
 
     }
 
+    async function deleteOneStadium(id){
+  
+      await deleteStadium(id)
+      // refetching the stadiums after we delete and setting the state again
+      await getStadiums()
+    }
+
     useEffect(()=>{
         getStadiums()
     },[])
@@ -35,18 +42,20 @@ function StadiumList() {
           {stadiums.map((oneStadium)=>
           <div style={{margin:"100px"}} key={oneStadium._id}>
             
-                <Link to={`/stadiums/${oneStadium._id}`}>
+                <Link to={`/stadium/${oneStadium._id}`}>
                 <h2>{oneStadium.name}</h2>
                     <p>{oneStadium.city}</p>
                 </Link>
     
-              {user._id === oneStadium.addedBy._id && (
+              {user.role === 'admin' ? (
                 <>
-                <button onClick={()=>{deleteStadium(oneStadium._id)}}>Delete Stadium</button>
-                <Link to={`/stadium/${oneStadium._id}/edit`}><button>Update Stadium</button></Link>
-    
+                <button onClick={()=>{deleteOneStadium(oneStadium._id)}}>Delete Stadium</button>
+                <Link to={`/stadium/${oneStadium._id}/update`}><button>Update Stadium</button></Link>
                 </>
     
+                ): user.role === 'customer' && (
+                  <Link to={`/stadium/${oneStadium._id}/reservation`}><button>Reserve</button></Link>
+
                 )}
               
             
