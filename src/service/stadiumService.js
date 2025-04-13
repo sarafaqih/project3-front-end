@@ -19,7 +19,7 @@ const getAllStadiums = async () => {
   try {
     const res = await api.get("/");
     console.log("res", res.data);
-    return res.data;
+    return res. data;
   } catch (error) {
     console.log("Error fetching data:", error);
     return []; // Return empty array in case of error
@@ -31,7 +31,7 @@ const createStadium = async (formData) => {
   try {
     const res = await api.post("/", formData);
     console.log("Response from backend:", res.data);
-    return res.data;
+    return res. data;
   } catch (err) {
     console.log("Error creating stadium:", err.message);
     throw err; // Rethrow the error for the caller to handle if needed
