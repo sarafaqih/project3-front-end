@@ -15,7 +15,7 @@ function Homepage() {
   callProtectedRoute()
   return (
     <div>
-      Homepage
+      <h1>Homepage</h1>
     </div>
   )
 }

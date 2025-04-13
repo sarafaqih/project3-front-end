@@ -24,7 +24,7 @@ function Login() {
           console.log(response.data)
           localStorage.setItem("token",response.data.token)
           validateToken()
-          // navigate("/login")
+          navigate("/")
       }
       catch(err){
           console.log(err)
