@@ -15,6 +15,10 @@ import StadiumUpdate from './components/stadium/StadiumUpdate'
 import ListReservation from './components/reservation/ListReservation'
 import ReservationDetails from './components/reservation/ReservationDetails'
 import ReservationForm from './components/reservation/ReservationForm'
+import Footer from './components/Footer'
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Button, Card } from 'react-bootstrap'
+import { Link } from 'react-router'
 
 function App() {
 
@@ -23,6 +27,14 @@ function App() {
   return (
     <>
       <Navbar/>
+      <Footer/>
+
+      {!user && (
+        <Card border="light">
+          <h1 className='card-title h1'>Welcome to Timba Stadiums Reservations System</h1>
+        </Card>
+      )}
+
       <Routes>
         { user ? (
           <>
