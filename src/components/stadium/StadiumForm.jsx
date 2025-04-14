@@ -13,7 +13,7 @@ function StadiumForm() {
     name:"",
     openingTime:'',
     closingTime:'',
-    Facilities:"prayer-room",
+    Facilities:[],
     GoogleMaps:"",
     ContactNo:'',
     PricePerHour:'',
