@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BASE_URL = ${import.meta.env.VITE_BACKEND_URL}/stadium;
+const BASE_URL = `${import.meta.env.VITE_BACKEND_URL}/stadium`;
   
   const api = axios.create({
       baseURL: BASE_URL 
@@ -9,7 +9,7 @@ const BASE_URL = ${import.meta.env.VITE_BACKEND_URL}/stadium;
   api.interceptors.request.use(config => {
     const token = localStorage.getItem('token');
     if (token) {
-        config.headers.Authorization = Bearer ${token};
+        config.headers.Authorization = `Bearer ${token}`;
     }
     return config;
 });
@@ -35,14 +35,13 @@ const getOneStadium = async (id) => {
 
 async function createStadium(formData){
   try{
-      const res = await api.post(/,formData)
+      const res = await api.post(`/`,formData)
       console.log("Response from backend:", res.data);
       return res.data
   }catch(err){
       console.log(err.message)
   }
 }
-
 
 async function deleteStadium(id){
     if(!id){
@@ -56,5 +55,8 @@ async function deleteStadium(id){
     }
 }
 
-export  {getAllStadiums, getOneStadium, createStadium, deleteStadium}; 
+function test(){
+    
+}
 
+export  {getAllStadiums, getOneStadium, createStadium, deleteStadium}; 

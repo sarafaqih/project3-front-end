@@ -3,13 +3,19 @@ import axios from 'axios'
 import {Link} from "react-router"
 import { authContext } from '../../context/AuthContext'
 import { getAllReservations } from '../../service/reservationService'
+import {getOneStadium} from '../../service/stadiumService'
+import Card from 'react-bootstrap/Card'
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import {CardBody, Container} from "react-bootstrap";
+import Badge from 'react-bootstrap/Badge';
+
 
 function ListReservation() {
     const [reservations,setReservations] = useState([]) 
 
     const {user} = useContext(authContext)
     console.log(user._id)
-    console.log("i am the role" + user.role)
 
     async function getReservation(){
         try{
@@ -17,6 +23,15 @@ function ListReservation() {
             const fetchedReservations = await getAllReservations()
             console.log(fetchedReservations)
             setReservations(fetchedReservations)
+            // stadium=getOneStadium(reservations.stadium._id)
+
+            // (reservations.stadium).map((oneStadium) => {
+            //     return console.log('i am the one '+oneStadium.name)
+            // })
+            // console.log(reservations.stadium +' i am the stadium d')
+
+            // console.log(stadium +' i am the stadium id')
+        
 
         }
         catch(error){
@@ -31,19 +46,33 @@ function ListReservation() {
     },[])
 
     return (
-        <div style={{padding:'70px'}}>
-          <h1>Reservation List</h1>
+    <Container style={{padding:'70px'}}>
+    <Row xs={1} md={3} className="g-4">
+            {reservations.map((oneReservation)=>
+            <Col key={oneReservation._id}>
+                <Card className="h-100">
+                <Card.Body>
+                    
+                    <div className="d-flex justify-content-between align-items-start">
+                    <Card.Title className="mb-1 fw-bold" ><Link  className="text-dark text-decoration-none" style={{fontSize:'30px'}} to={`/stadium/${oneReservation.stadium._id}` }>{oneReservation.stadium.name}</Link></Card.Title>
+                    </div>
+
+                    <div className="d-flex justify-content-between align-items-start">
+                    <Card.Title className="mb-1 fw-bold" >{oneReservation.reserveFrom} - {oneReservation.reserveTo}</Card.Title>
+                    </div>
+
+                    <div className="d-flex justify-content-between align-items-start">
+                    <Card.Title className="mb-1 fw-bold" >{oneReservation.stadium.contactNo}</Card.Title>
+                    </div>
+
+
+                    </Card.Body>
+                    </Card>
     
-          {reservations.map((oneReservation)=>
-          <div style={{margin:"100px"}} key={oneReservation._id}>
-            
-                <Link to={`/stadium/reservations/${oneReservation._id}`}>
-                <h2>{oneReservation.reserveFrom}</h2>
-                    <p>{oneReservation.reserveTo}</p>
-                </Link>
-          </div>
-        )}
-</div>
+                    </Col>
+            )}
+            </Row>
+            </Container>
 )
 }
 export default ListReservation

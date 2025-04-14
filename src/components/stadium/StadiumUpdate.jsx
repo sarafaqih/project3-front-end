@@ -2,6 +2,13 @@ import {useState, useContext, useEffect} from 'react'
 import axios from 'axios'
 import {useNavigate, useParams} from 'react-router'
 import { authContext } from '../../context/AuthContext';
+import Card from 'react-bootstrap/Card'
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import {Container} from 'react-bootstrap';
+import Badge from 'react-bootstrap/Badge';
+import Button from 'react-bootstrap/Button';
+import Form from 'react-bootstrap/Form'
 
 
 function StadiumUpdate() {
@@ -40,9 +47,7 @@ async function handleSubmit(e){
       const token = localStorage.getItem("token")
 
       const createdStadium = await axios.put(`${import.meta.env.VITE_BACKEND_URL}/stadium/${stadiumId}`,formData,{headers:{Authorization:`Bearer ${token}`}})
-
       navigate("/stadium")
-
   }
   catch(err){
       console.log(err)
@@ -64,10 +69,18 @@ useEffect(()=>{
 },[])
 
   return (
+    <Container style={{padding:'70px', width: '800px'}}>
+    <Row xs={1} md={3} className="g-4">
+          <Col md={12}>
+              <Card className="h-100">
+                <Card.Body>
     <div>
       <form onSubmit={handleSubmit}>
-      <label htmlFor='name'>Name</label>
-        <input
+      <Form.Group className="mb-3" >
+
+      <Form.Label><label htmlFor='name'>Name</label></Form.Label>
+        <Form.Control
+
           required
           type='text'
           name='name'
@@ -75,15 +88,20 @@ useEffect(()=>{
           value={formData.name}
           onChange={handleChange}
         />
+                </Form.Group>
 
-        <label htmlFor='openingTime'>Opening Time</label>
-        <input aria-label="Time" type="time" id='openingTime' name='openingTime' value={formData.openingTime} onChange={handleChange}/>
 
-        <label htmlFor='closingTime'>Closing Time</label>
-        <input aria-label="Time" type="time" id='closingTime' name='closingTime' value={formData.closingTime} onChange={handleChange}/>
+                <Form.Label><label htmlFor='openingTime'>Opening Time</label></Form.Label>
+        <Form.Control
+ aria-label="Time" type="time" id='openingTime' name='openingTime' value={formData.openingTime} onChange={handleChange}/>
 
-        <label htmlFor='Facilities'>Facilities</label>
-        <select
+        <Form.Label><label htmlFor='closingTime'>Closing Time</label></Form.Label>
+        <Form.Control
+ aria-label="Time" type="time" id='closingTime' name='closingTime' value={formData.closingTime} onChange={handleChange}/>
+
+        <Form.Label><label htmlFor='Facilities'>Facilities</label></Form.Label>
+        <Form.Control
+                    as='select'
           name='Facilities'
           id='Facilities'
           value={formData.Facilities}
@@ -96,10 +114,11 @@ useEffect(()=>{
           <option value='coffee-shop'>Coffee Shop</option>
           <option value='free-ball'>Free Ball</option>
           <option value='water'>Water</option>
-        </select>
+        </Form.Control>
 
-        <label htmlFor='GoogleMaps'>Google Maps</label>
-        <input
+        <Form.Label><label htmlFor='GoogleMaps'>Google Maps</label></Form.Label>
+        <Form.Control
+
           type='text'
           name='GoogleMaps'
           id='GoogleMaps'
@@ -107,8 +126,9 @@ useEffect(()=>{
           onChange={handleChange}
         />
 
-        <label htmlFor='ContactNo'>Contact Number</label>
-        <input
+       <Form.Label><label htmlFor='ContactNo'>Contact Number</label></Form.Label>
+        <Form.Control
+
           required
           type='number'
           name='ContactNo'
@@ -119,8 +139,9 @@ useEffect(()=>{
           onChange={handleChange}
         />
 
-        <label htmlFor='PricePerHour'>Price Per Hour</label>
-        <input
+       <Form.Label><label htmlFor='PricePerHour'>Price Per Hour</label></Form.Label>
+        <Form.Control
+
           required
           type='number'
           name='PricePerHour'
@@ -130,8 +151,9 @@ useEffect(()=>{
           onChange={handleChange}
         />
 
-        <label htmlFor='StadiumNature'>Stadium Nature</label>
-        <select
+        <Form.Label><label htmlFor='StadiumNature'>Stadium Nature</label></Form.Label>
+        <Form.Control
+                    as='select'
           required
           name='StadiumNature'
           id='StadiumNature'
@@ -140,10 +162,11 @@ useEffect(()=>{
         >
           <option value='outdoor'>Outdoor</option>
           <option value='indoor'>Indoor</option>
-        </select>
+        </Form.Control>
 
-        <label htmlFor='playerGender'>Player Gender</label>
-        <select
+        <Form.Label><label htmlFor='playerGender'>Player Gender</label></Form.Label>
+        <Form.Control
+                    as='select'
           required
           name='playerGender'
           id='playerGender'
@@ -153,11 +176,12 @@ useEffect(()=>{
           <option value='female'>Female</option>
           <option value='male'>Male</option>
           <option value='both'>Both</option>
-        </select>
+        </Form.Control>
 
 
-        <label htmlFor='city-name'>City</label>
-        <input
+        <Form.Label><label htmlFor='city-name'>City</label></Form.Label>
+        <Form.Control
+
           required
           type='text'
           name='city'
@@ -165,11 +189,14 @@ useEffect(()=>{
           value={formData.city}
           onChange={handleChange}
         />
-        <label htmlFor='governorate-input'>Governorate</label>
-        <select
+        <Form.Label><label htmlFor='governorate-Form.Control
+ '>Governorate</label></Form.Label>
+        <Form.Control
+                    as='select'
           required
           name='Governorates'
-          id='governorate-input'
+          id='governorate-Form.Control
+          '
           value={formData.Governorates}
           onChange={handleChange}
         >
@@ -177,10 +204,11 @@ useEffect(()=>{
           <option value='muharraq'>Muharraq</option>
           <option value='northern'>Northern</option>
           <option value='southern'>Southern</option>
-        </select>
+        </Form.Control>
 
-        <label htmlFor='notes'>Notes</label>
-        <textarea
+        <Form.Label><label htmlFor='notes'>Notes</label></Form.Label>
+        <Form.Control
+                    as='textarea'
           type='text'
           name='notes'
           id='notes'
@@ -189,9 +217,15 @@ useEffect(()=>{
         />
 
 
-        <button>SUBMIT</button>
+    <button variant='primary' type='submit'>SUBMIT</button>
       </form>
+      
     </div>
+    </Card.Body>
+    </Card>
+</Col>
+</Row>
+</Container>
   )
 }
 

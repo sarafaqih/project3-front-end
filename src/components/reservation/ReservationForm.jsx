@@ -3,6 +3,8 @@ import {useFetcher, useNavigate, useParams} from 'react-router'
 import { authContext } from '../../context/AuthContext';
 import {createReservation} from '../../service/reservationService'
 import { getAllStadiums } from '../../service/stadiumService'
+import Form from 'react-bootstrap/Form'
+import InputGroup from 'react-bootstrap/InputGroup'
 
 function ReservationForm() {
     const {user} = useContext(authContext)
@@ -97,21 +99,60 @@ function ReservationForm() {
 
     return (
       <div>
+        <h1>Reserve {stadium.name}</h1>
+        <br/>
         <form onSubmit={handleSubmit}>
 
-        <label htmlFor='reservationDate'>Date</label>
-          <input type="Date" id='reservationDate' name='reservationDate' value={formData.reservationDate} onChange={handleChange}/>
+        <InputGroup size="lg" className="mb-3">
+        <InputGroup.Text id="inputGroup-sizing-lg" htmlFor="reservationDate">Date</InputGroup.Text>
+        <Form.Control
+          aria-label="Large"
+          aria-describedby="inputGroup-sizing-lg"
+          type="Date"
+          name='reservationDate'
+          id='reservationDate'
+          value={formData.reservationDate}
+          onChange={handleChange}
+          required
+        />
+      </InputGroup>
 
-  
-          <label htmlFor='reserveFrom'>Reserve From</label>
-          <input aria-label="Time" type="time" id='reserveFrom' name='reserveFrom' value={formData.reserveFrom} onChange={handleChange}/>
-  
-          <label htmlFor='reserveTo'>Reserve To</label>
-          <input aria-label="Time" type="time" id='reserveTo' name='reserveTo' value={formData.reserveTo} onChange={handleChange}/>
-  
-          <label htmlFor='totallPrice'>Total Price</label>
-          <p>{formData.totallPrice} <span>BHD</span></p>
+      <InputGroup size="lg" className="mb-3">
+        <InputGroup.Text id="inputGroup-sizing-lg" htmlFor="reserveFrom">Reserve From</InputGroup.Text>
+        <Form.Control
+          aria-label="Large"
+          aria-describedby="inputGroup-sizing-lg"
+          type="time"
+          name='reserveFrom'
+          id='reserveFrom'
+          value={formData.reserveFrom}
+          onChange={handleChange}
+          required
+        />
+      </InputGroup>
 
+      <InputGroup size="lg" className="mb-3">
+        <InputGroup.Text id="inputGroup-sizing-lg" htmlFor="reserveTo">Reserve To</InputGroup.Text>
+        <Form.Control
+          aria-label="Large"
+          aria-describedby="inputGroup-sizing-lg"
+          type="time"
+          name='reserveTo'
+          id='reserveTo'
+          value={formData.reserveTo}
+          onChange={handleChange}
+          required
+        />
+      </InputGroup>
+
+      <InputGroup size="lg" className="mb-3">
+      <InputGroup.Text id="inputGroup-sizing-lg" htmlFor="totallPrice">Total Price</InputGroup.Text>
+      <Form.Control
+          value={formData.totallPrice +' BHD'} 
+          disabled
+        /> 
+
+      </InputGroup>
   
           
           <button>Reserve</button>
