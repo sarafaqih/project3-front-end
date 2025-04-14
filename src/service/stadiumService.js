@@ -48,5 +48,16 @@ const createStadium = async (formData) => {
 };
 
 
+async function deleteStadium(id){
+    if(!id){
+       return console.log("No ID")
+    }
+    try{
+        const res = await api.delete(`/${id}`)
+        return res.data
+    }catch(err){
+        console.log(err)
+    }
+}
 
 export  {getAllStadiums, getOneStadium, createStadium, deleteStadium}; 
