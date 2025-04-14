@@ -85,7 +85,7 @@ function ReservationForm() {
   
             const createdReservation = await createReservation(stadiumId, formData)
       
-              navigate("/stadium")
+              navigate("/stadium/reservations")
       }catch(err){
         console.log(err)
       }

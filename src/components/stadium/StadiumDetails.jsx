@@ -1,5 +1,6 @@
-import {useState,useEffect} from 'react'
+import {useState,useEffect, useContext} from 'react'
 import {useParams, useNavigate} from 'react-router'
+import { authContext } from '../../context/AuthContext'
 import axios from 'axios'
 import Table from 'react-bootstrap/Table';
 import Card from 'react-bootstrap/Card'
@@ -14,6 +15,8 @@ import { deleteStadium } from '../../service/stadiumService'
 
 function StadiumDetails() {
     const [stadium,setStadium] = useState(null)
+    const {user} = useContext(authContext)
+
 
     const navigate = useNavigate()
 
@@ -105,7 +108,9 @@ function StadiumDetails() {
                   <Card.Title className="mb-0">Google Maps</Card.Title>
                 </div>
                 <div>
-                  <Card.Text className="mb-0">{stadium.GoogleMaps}</Card.Text>
+                  <Card.Text className="mb-0"> <a href={stadium.GoogleMaps} target="_blank" rel="noopener noreferrer">
+    <button className="btn btn-primary">Directions</button>
+  </a></Card.Text>
                 </div>
               </div>
 
@@ -154,7 +159,7 @@ function StadiumDetails() {
                 </div>
               </div>
 
-                {stadium.addedBy.role === 'admin' ? (
+                {user.role === 'admin' ? (
                   <>
                 <div className="d-flex justify-content-between align-items-center mb-3">
 
