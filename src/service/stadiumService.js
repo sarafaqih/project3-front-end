@@ -56,7 +56,7 @@ async function deleteStadium(id){
 }
 
 function test(){
-    
+    console.log("test function")
 }
 
 export  {getAllStadiums, getOneStadium, createStadium, deleteStadium}; 
